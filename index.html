@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma in Information Technology | Transform Your Future</title>
+    <meta name="description" content="Join our comprehensive IT Diploma program and launch your tech career with industry-relevant skills and hands-on experience.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #0f172a 100%);
+            min-height: 100vh;
+            padding-top: 80px; /* To prevent content under navbar */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Header Styles */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.5) 100%);
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.1;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: #60a5fa;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            bottom: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: #a855f7;
+            animation: float 6s ease-in-out infinite 2s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button svg {
+            margin-left: 0.5rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            margin: 0 auto 3rem;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        /* .about-text {
+            space-y: 1.5rem;
+        } */
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 70px rgba(59, 130, 246, 0.2);
+        }
+
+        .module-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover .module-image {
+            transform: scale(1.1);
+        }
+
+        .module-icon {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+
+        .module-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .module-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Course Details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 35px 70px rgba(139, 92, 246, 0.2);
+        }
+
+        .detail-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-description {
+            color: #cbd5e1;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: scale(1.05);
+        }
+
+        .benefit-check {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            margin-top: 4rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        .form-textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar div {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+        }
+
+        .navbar ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar div {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-subtitle {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* Background Decorations */
+        .bg-decoration {
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.2) 0%, rgba(51, 65, 85, 0.2) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; color:#fff;">IT Academy</span>
+            </div>
+            <ul>
+                <li><a href="#about" class="footer-link" style="color:#fff; font-weight:500;">About</a></li>
+                <li><a href="#modules" class="footer-link" style="color:#fff; font-weight:500;">Modules</a></li>
+                <li><a href="#details" class="footer-link" style="color:#fff; font-weight:500;">Details</a></li>
+                <li><a href="#apply" class="footer-link" style="color:#fff; font-weight:500;">Apply</a></li>
+            </ul>
+            <div style="display:flex; gap:1rem;">
+                <a href="login.php" class="cta-button" style="padding:0.5rem 1.25rem; font-size:1rem; border-radius:8px; background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);">Login</a>
+                <a href="signup.php" class="cta-button" style="padding:0.5rem 1.25rem; font-size:1rem; border-radius:8px; background:linear-gradient(135deg,#8b5cf6 0%,#3b82f6 100%);">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                Diploma in
+                <span class="gradient-text">Information Technology</span>
+            </h1>
+            <p class="hero-subtitle animate-slide-left">
+                Transform your passion for technology into a rewarding career. Master cutting-edge skills and join the digital revolution.
+            </p>
+            <div class="animate-slide-right">
+                <a href="#apply" class="cta-button">
+                    Start Your Journey
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About the Course</h2>
+        <div class="title-underline"></div>
+        
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Our comprehensive Diploma in Information Technology is designed to equip you with the essential skills needed to thrive in today's digital landscape. From programming fundamentals to advanced system administration, we cover it all.</p>
+                <p>With industry-experienced instructors and hands-on projects, you'll graduate with practical knowledge and real-world experience that employers value.</p>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span>Industry-Recognized Certification</span>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop&crop=center" alt="Students learning technology">
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section class="section bg-decoration" id="modules">
+        <h2 class="section-title">Course Modules</h2>
+        <div class="title-underline"></div>
+        <p style="text-align: center; font-size: 1.25rem; color: #cbd5e1; max-width: 800px; margin: 0 auto;">
+            Comprehensive curriculum designed by industry experts to give you the competitive edge
+        </p>
+
+        <div class="modules-grid">
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop&crop=center" alt="Programming Fundamentals" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">💻</div>
+                </div>
+                <h3 class="module-title">Programming Fundamentals</h3>
+                <p class="module-description">Master Python, Java, and JavaScript with hands-on coding projects</p>
+            </div>
+
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop&crop=center" alt="Web Development" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">🌐</div>
+                </div>
+                <h3 class="module-title">Web Development</h3>
+                <p class="module-description">Build responsive websites using HTML, CSS, React, and modern frameworks</p>
+            </div>
+
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=250&fit=crop&crop=center" alt="Database Management" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">🗄️</div>
+                </div>
+                <h3 class="module-title">Database Management</h3>
+                <p class="module-description">Design and manage databases with SQL, NoSQL, and cloud solutions</p>
+            </div>
+
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop&crop=center" alt="Network & Security" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">🔒</div>
+                </div>
+                <h3 class="module-title">Network & Security</h3>
+                <p class="module-description">Understanding network protocols, cybersecurity, and system protection</p>
+            </div>
+
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop&crop=center" alt="Cloud Computing" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">☁️</div>
+                </div>
+                <h3 class="module-title">Cloud Computing</h3>
+                <p class="module-description">AWS, Azure, and Google Cloud platforms with practical deployment</p>
+            </div>
+
+            <div class="module-card">
+                <div style="position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop&crop=center" alt="Mobile Development" class="module-image">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
+                    <div class="module-icon">📱</div>
+                </div>
+                <h3 class="module-title">Mobile Development</h3>
+                <p class="module-description">Create native and cross-platform mobile applications</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details -->
+    <section class="section" id="details">
+        <h2 class="section-title">Course Details</h2>
+        <div class="title-underline"></div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="detail-icon">⏰</div>
+                <h3 class="detail-title">Duration</h3>
+                <div class="detail-value">18 Months</div>
+                <p class="detail-description">Intensive program with flexible scheduling</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-icon">🎓</div>
+                <h3 class="detail-title">Mode</h3>
+                <div class="detail-value">Hybrid Learning</div>
+                <p class="detail-description">Online theory + In-person labs</p>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-icon">✅</div>
+                <h3 class="detail-title">Eligibility</h3>
+                <div class="detail-value">Grade 12+</div>
+                <p class="detail-description">No prior programming experience required</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section bg-decoration">
+        <h2 class="section-title">Why Choose Our Program?</h2>
+        <div class="title-underline"></div>
+
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Industry-Expert Instructors</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Hands-on Project Portfolio</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Job Placement Assistance</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Industry Partnerships</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Modern Lab Facilities</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Flexible Payment Plans</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Career Mentorship</span>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-check">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span>Alumni Network Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Apply Section -->
+    <section id="apply" class="section">
+        <h2 class="section-title">Ready to Get Started?</h2>
+        <div class="title-underline"></div>
+        <p style="text-align: center; font-size: 1.25rem; color: #cbd5e1;">
+            Take the first step towards your IT career. Apply now or get in touch for more information.
+        </p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name *</label>
+                    <input type="text" id="name" name="name" required class="form-input" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="email" required class="form-input" placeholder="your.email@example.com">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="071-1567-890">
+            </div>
+            
+            <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your background and interests..."></textarea>
+            </div>
+            <br/>
+            <button type="submit" class="submit-button">
+                Apply Now
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; text-align: left;">
+            <div style="min-width: 220px;">
+                <h3 class="footer-title">IT Academy</h3>
+                <p class="footer-subtitle">Shaping the future of technology, one student at a time.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="#" class="footer-link" title="Facebook" style="font-size: 1.5rem;">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+                    </a>
+                    <a href="#" class="footer-link" title="X" style="font-size: 1.5rem;">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.763.127 1.124C7.728 8.807 4.1 6.884 1.671 3.965c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.009-7.496 14.009-13.986 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
+                    </a>
+                    <a href="#" class="footer-link" title="LinkedIn" style="font-size: 1.5rem;">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div style="min-width: 180px;">
+                <h4 style="color:#fff; font-family:'Space Grotesk',sans-serif; font-size:1.1rem; margin-bottom:1rem;">Quick Links</h4>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="#" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Programs</a></li>
+                    <li><a href="#" class="footer-link">Admission</a></li>
+                    <li><a href="#" class="footer-link">Student Portal</a></li>
+                </ul>
+            </div>
+            <div style="min-width: 220px;">
+                <h4 style="color:#fff; font-family:'Space Grotesk',sans-serif; font-size:1.1rem; margin-bottom:1rem;">Contact Info</h4>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="tel:071-1567-890" class="footer-link">071-1567-890</a></li>
+                    <li><a href="mailto:info@itacademy.com" class="footer-link">info@itacademy.com</a></li>
+                    <li class="footer-link">123 Tech Street, Digital City</li>
+                    <li class="footer-link">Mon-Fri: 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:2rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:1.5rem; text-align:center;">
+            <div class="footer-links" style="justify-content:center;">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-copyright">
+                © 2025 IT Academy. All rights reserved. | Empowering careers through technology education.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            console.log('Form submitted:', data);
+            alert('Thank you! We will contact you soon.');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
