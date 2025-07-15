@@ -46,12 +46,10 @@ $error = "";
 $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $pass = trim($_POST['password']);
 
     // Simple SQL injection prevention
-    $name = $conn->real_escape_string($name);
     $email = $conn->real_escape_string($email);
 
     // Hash the password securely
@@ -62,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($check && $check->num_rows > 0) {
         $error = "Email already exists.";
     } else {
-        $sql = "INSERT INTO users (name, email, password, role) VALUES ('$name', '$email', '$hashed_pass', 'student')";
+        $sql = "INSERT INTO users (email, password, role) VALUES ('$email', '$hashed_pass', 'student')";
         if ($conn->query($sql) === TRUE) {
             $success = "Signup successful! <a href='login.php' class='text-blue-600 underline'>Login here</a>.";
         } else {
@@ -92,8 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($error) echo "<p class='text-red-500 mb-4 text-center'>$error</p>"; ?>
         <?php if ($success) echo "<p class='text-green-600 mb-4 text-center'>$success</p>"; ?>
         <form method="post" action="">
-            <label class="block mb-2 font-semibold">Name:</label>
-            <input type="text" name="name" required class="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <label class="block mb-2 font-semibold">User Name:</label>
             <input type="email" name="email" required class="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <label class="block mb-2 font-semibold">Password:</label>

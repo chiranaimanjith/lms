@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact_number = $conn->real_escape_string($_POST['contact_number']);
     $email = $conn->real_escape_string($_POST['email']);
     $course = $conn->real_escape_string($_POST['courses']);
-    $defaultPassword = password_hash("123456", PASSWORD_DEFAULT); // default password
+    $defaultPassword = md5("123456"); // default password
 
     // Step 1: Insert into Users table
     $userSql = "INSERT INTO Users (name, email, password, role)
@@ -41,6 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $errorMsg = "Error inserting into Users table: " . $conn->error;
     }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = intval($_POST['delete_id']);
+    // $conn = new mysqli(...); // your DB connection
+    $stmt = $conn->prepare("DELETE FROM Student WHERE student_id = ?");
+    $stmt->bind_param("i", $delete_id);
+    $stmt->execute();
+    $stmt->close();
+    header("Location: students.php");
+    exit();
 }
 ?>
 
@@ -90,7 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tbody>
                 <?php
                 // Fetch students from the database
-                $result = $conn->query("SELECT * FROM Student ORDER BY created_at DESC");
+                $sql = "SELECT student_id, name, nic, gender, contact, email, course FROM Student";
+                $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0):
                     while ($row = $result->fetch_assoc()):
                 ?>
@@ -102,9 +114,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <td class="px-2 sm:px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
                         <td class="px-2 sm:px-4 py-2"><?php echo htmlspecialchars($row['course']); ?></td>
                         <td class="px-2 sm:px-4 py-2">
-                            <!-- You can implement Edit/Delete actions here -->
-                            <button class="text-blue-600 hover:underline mr-2">Edit</button>
-                            <button class="text-red-600 hover:underline">Delete</button>
+                            <a href="edit_student.php?id=<?php echo $row['student_id']; ?>" class="text-blue-600 hover:underline mr-2">Edit</a>
+                            <form action="students.php" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this student?');">
+                                <input type="hidden" name="delete_id" value="<?php echo $row['student_id']; ?>">
+                                <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 <?php

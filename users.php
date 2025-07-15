@@ -63,7 +63,7 @@ if ($conn->connect_error) {
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
-                            $sql = "SELECT id, name, email, role FROM users";
+                            $sql = "SELECT user_id, name, email, role FROM users";
                             $result = $conn->query($sql);
 
                             if ($result && $result->num_rows > 0) {
@@ -73,8 +73,8 @@ if ($conn->connect_error) {
                                     echo '<td class="p-3">' . htmlspecialchars($row['email']) . '</td>';
                                     echo '<td class="p-3">' . htmlspecialchars($row['role']) . '</td>';
                                     echo '<td class="p-3">
-                                            <a href="edit_user.php?id=' . $row['id'] . '" class="text-blue-600 hover:underline">Edit</a>
-                                            <a href="delete_user.php?id=' . $row['id'] . '" class="text-red-600 hover:underline ml-2" onclick="return confirm(\'Are you sure?\')">Delete</a>
+                                            <a href="edit_user.php?id=' . $row['user_id'] . '" class="text-blue-600 hover:underline">Edit</a>
+                                            <a href="delete_user.php?id=' . $row['user_id'] . '" class="text-red-600 hover:underline ml-2" onclick="return confirm(\'Are you sure?\')">Delete</a>
                                           </td>';
                                     echo '</tr>';
                                 }
