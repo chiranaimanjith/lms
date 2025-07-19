@@ -19,6 +19,13 @@ $result = $conn->query($sql);
 if ($result && $row = $result->fetch_assoc()) {
     $student_count = $row['total'];
 }
+// Fetch total modules count
+$module_count = 0;
+$sql = "SELECT COUNT(*) as total FROM modules";
+$result = $conn->query($sql);
+if ($result && $row = $result->fetch_assoc()) {
+    $module_count = $row['total'];
+}
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -62,7 +69,7 @@ $conn->close();
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-lg font-semibold text-gray-600">Total Modules</h2>
-                    <p class="text-3xl font-bold text-gray-900 mt-2">78</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2"><?php echo number_format($module_count); ?></p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-lg font-semibold text-gray-600">Modules Active</h2>
