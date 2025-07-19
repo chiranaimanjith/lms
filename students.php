@@ -90,6 +90,10 @@ if ($moduleResult && $moduleResult->num_rows > 0) {
         <?php endif; ?>
         <div class="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
             <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Students</h1>
+            <form method="get" class="flex items-center w-full sm:w-auto gap-2">
+                <input type="text" name="search" placeholder="Search students..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" class="px-3 py-2 border border-gray-300 rounded w-full sm:w-64" />
+                <button type="submit" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">Search</button>
+            </form>
             <button onclick="document.getElementById('registerModal').classList.remove('hidden')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded shadow transition w-full sm:w-auto">+ Register Student</button>
         </div>
         <!-- Students Table Placeholder -->
@@ -109,9 +113,13 @@ if ($moduleResult && $moduleResult->num_rows > 0) {
                 <tbody>
                 <?php
                 // Fetch students from the database
+                $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
                 $sql = "SELECT s.student_id, u.name, s.nic, s.gender, s.contact, u.email, s.course
                         FROM Student s
                         JOIN Users u ON s.user_id = u.user_id";
+                if ($search !== '') {
+                    $sql .= " WHERE u.name LIKE '%$search%' OR u.email LIKE '%$search%' OR s.nic LIKE '%$search%' OR s.course LIKE '%$search%'";
+                }
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0):
                     while ($row = $result->fetch_assoc()):

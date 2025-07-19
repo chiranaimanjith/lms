@@ -103,7 +103,6 @@ if (isset($_GET['delete'])) {
                 <table class="min-w-full table-auto">
                     <thead>
                         <tr class="bg-gray-100">
-                            <th class="px-4 py-2 text-left">ID</th>
                             <th class="px-4 py-2 text-left">Name</th>
                             <th class="px-4 py-2 text-left">Description</th>
                             <th class="px-4 py-2 text-left">Actions</th>
@@ -124,7 +123,6 @@ if (isset($_GET['delete'])) {
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr class='border-b'>";
-                                    echo "<td class='px-4 py-2'>" . htmlspecialchars($row['id']) . "</td>";
                                     echo "<td class='px-4 py-2'>" . htmlspecialchars($row['name']) . "</td>";
                                     echo "<td class='px-4 py-2'>" . htmlspecialchars($row['description']) . "</td>";
                                     echo "<td class='px-4 py-2'>";
