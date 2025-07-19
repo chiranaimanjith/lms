@@ -19,16 +19,16 @@ if (!isset($_SESSION['email'])) {
             <div class="p-6 text-2xl font-bold border-b border-gray-700">LMS Admin</div>
             <nav class="mt-6">
                 <a href="admindash.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Dashboard</a>
-                <a href="courses.php" class="block py-3 px-6 bg-gray-700 text-white font-semibold">Courses</a>
+                <a href="courses.php" class="block py-3 px-6 bg-gray-700 text-white font-semibold">Modules</a>
                 <a href="users.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Users</a>
                 <a href="students.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Students</a>
                 <a href="settings.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Settings</a>
             </nav>
         </aside>
         <main class="flex-1 p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Courses</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Modules</h1>
             <div class="bg-white p-6 rounded-lg shadow-md">
-                <p class="text-gray-700">This is the Courses page. List and manage courses here.</p>
+                <p class="text-gray-700">This is the Module page. List and manage modules here.</p>
             </div>
         </main>
     </div>

@@ -24,7 +24,7 @@ if (!isset($_SESSION['email'])) {
             <nav class="mt-6">
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Dashboard</a>
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">My Courses</a>
-                <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200>Grades</a>
+                <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Grades</a>
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Calendar</a>
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Profile</a>
             </nav>

@@ -33,7 +33,7 @@ if ($conn->connect_error) {
             <div class="p-6 text-2xl font-bold border-b border-gray-700">LMS Admin</div>
             <nav class="mt-6">
                 <a href="admindash.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Dashboard</a>
-                <a href="courses.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Courses</a>
+                <a href="courses.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Modules</a>
                 <a href="users.php" class="block py-3 px-6 bg-gray-700 text-white font-semibold">Users</a>
                 <a href="students.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Students</a>
                 <a href="settings.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Settings</a>
