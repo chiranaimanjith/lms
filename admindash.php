@@ -54,7 +54,9 @@ $conn->close();
             <header class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-800">Welcome, Admin!</h1>
                 <div class="flex items-center space-x-4">
-                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-200">Add New Module</button>
+                    <button onclick="window.location.href='courses.php'" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-200">
+  Add New Module
+</button>
                     <!-- <img src="https://i.pravatar.cc/40?u=admin" alt="Admin Avatar" class="w-10 h-10 rounded-full"> -->
                     <form action="logout.php" method="post" class="inline">
                         <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200">Logout</button>

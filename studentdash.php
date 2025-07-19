@@ -4,6 +4,23 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
+
+// Connect to your database
+$conn = new mysqli("localhost", "root", "", "lms");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the user's name using their email
+$email = $_SESSION['email'];
+$sql = "SELECT name FROM users WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->bind_result($name);
+$stmt->fetch();
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -24,19 +41,13 @@ if (!isset($_SESSION['email'])) {
             <nav class="mt-6">
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Dashboard</a>
                 <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">My Courses</a>
-                <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Grades</a>
-                <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Calendar</a>
-                <a href="#" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Profile</a>
+                <a href="profile.php" class="block py-3 px-6 hover:bg-gray-700 transition duration-200">Profile</a>
             </nav>
         </aside>
 
         <main class="flex-1 p-8">
             <header class="flex justify-between items-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800">Welcome, Alex!</h1>
-                <div class="flex items-center space-x-4">
-                    <span class="text-gray-600">Your Progress: 68%</span>
-                    <img src="https://i.pravatar.cc/40?u=student" alt="Student Avatar" class="w-10 h-10 rounded-full">
-                </div>
+                <h1 class="text-3xl font-bold text-gray-800">Welcome, <?php echo htmlspecialchars($name); ?>!</h1>
                 <form action="logout.php" method="post" class="inline">
                     <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200">Logout</button>
                 </form>
@@ -118,7 +129,6 @@ if (!isset($_SESSION['email'])) {
                     </ul>
                 </div>
             </section>
-
         </main>
     </div>
 
