@@ -53,6 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     header("Location: students.php");
     exit();
 }
+
+$modules = [];
+$moduleResult = $conn->query("SELECT id, name FROM modules ORDER BY name ASC");
+if ($moduleResult && $moduleResult->num_rows > 0) {
+    while ($mod = $moduleResult->fetch_assoc()) {
+        $modules[] = $mod;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
                 <tbody>
                 <?php
                 // Fetch students from the database
-                $sql = "SELECT student_id, name, nic, gender, contact, email, course FROM Student";
+                $sql = "SELECT s.student_id, u.name, s.nic, s.gender, s.contact, u.email, s.course
+                        FROM Student s
+                        JOIN Users u ON s.user_id = u.user_id";
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0):
                     while ($row = $result->fetch_assoc()):
@@ -171,13 +181,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
                         <label for="courses" class="block font-semibold mb-1">Modules</label>
                         <select id="courses" name="courses" required class="w-full px-3 py-2 border border-gray-300 rounded">
                             <option value="">--Select Course--</option>
-                            <option value="it">Programming Fundamentals</option>
-                            <option value="webdev">Web Development</option>
-                            <option value="dbm">Database Management</option>
-                            <option value="ns">Network & Security</option>
-                            <option value="cc">Cloud Computing</option>
-                            <option value="mdev">Mobile Development</option>
-                            <!-- Add more courses as needed -->
+                            <?php foreach ($modules as $mod): ?>
+                                <option value="<?php echo htmlspecialchars($mod['id']); ?>">
+                                    <?php echo htmlspecialchars($mod['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-end gap-2">
