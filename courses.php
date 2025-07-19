@@ -5,13 +5,40 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 $host = 'localhost';
-$db   = 'lms_db';
+$db   = 'lms';
 $user = 'root'; 
 $pass = '';    
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+
+// Add Module
+if (isset($_POST['action']) && $_POST['action'] === 'add') {
+    $name = $conn->real_escape_string($_POST['name']);
+    $description = $conn->real_escape_string($_POST['description']);
+    $conn->query("INSERT INTO modules (name, description) VALUES ('$name', '$description')");
+    header("Location: courses.php");
+    exit();
+}
+
+// Edit Module
+if (isset($_POST['action']) && $_POST['action'] === 'edit') {
+    $id = intval($_POST['id']);
+    $name = $conn->real_escape_string($_POST['name']);
+    $description = $conn->real_escape_string($_POST['description']);
+    $conn->query("UPDATE modules SET name='$name', description='$description' WHERE id=$id");
+    header("Location: courses.php");
+    exit();
+}
+
+// Delete Module
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    $conn->query("DELETE FROM modules WHERE id=$id");
+    header("Location: courses.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -23,14 +50,22 @@ if ($conn->connect_error) {
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     // Modal logic
-    function openModal(id = null) {
+    let editingId = null;
+    function openModal(id = null, name = '', description = '') {
         document.getElementById('modal').classList.remove('hidden');
+        document.getElementById('moduleForm').reset();
         if (id) {
-            // Fill form for edit (stub)
             document.getElementById('modalTitle').innerText = 'Edit Module';
+            document.getElementById('form-action').value = 'edit';
+            document.getElementById('module-id').value = id;
+            document.getElementById('module-name').value = name;
+            document.getElementById('module-description').value = description;
         } else {
             document.getElementById('modalTitle').innerText = 'Add Module';
-            document.getElementById('moduleForm').reset();
+            document.getElementById('form-action').value = 'add';
+            document.getElementById('module-id').value = '';
+            document.getElementById('module-name').value = '';
+            document.getElementById('module-description').value = '';
         }
     }
     function closeModal() {
@@ -38,7 +73,7 @@ if ($conn->connect_error) {
     }
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this module?')) {
-            // Submit delete (stub)
+            window.location.href = 'courses.php?delete=' + id;
         }
     }
     </script>
@@ -76,7 +111,7 @@ if ($conn->connect_error) {
                     </thead>
                     <tbody>
                         <?php
-                        $search = $_GET['search'] ?? '';
+                        $search = isset($_GET['search']) ? $_GET['search'] : '';
                         $sql = "SELECT * FROM modules";
                         if (!empty($search)) {
                             $search = mysqli_real_escape_string($conn, $search);
@@ -93,8 +128,9 @@ if ($conn->connect_error) {
                                     echo "<td class='px-4 py-2'>" . htmlspecialchars($row['name']) . "</td>";
                                     echo "<td class='px-4 py-2'>" . htmlspecialchars($row['description']) . "</td>";
                                     echo "<td class='px-4 py-2'>";
-                                    echo "<button onclick='openModal(" . htmlspecialchars($row['id']) . ")' class='text-blue-600 hover:underline mr-2'>Edit</button>";
-                                    echo "<button onclick='confirmDelete(" . htmlspecialchars($row['id']) . ")' class='text-red-600 hover:underline'>Delete</button>";
+                                    // Pass data to JS for edit
+                                    echo "<button onclick=\"openModal('" . htmlspecialchars($row['id']) . "', '" . htmlspecialchars(addslashes($row['name'])) . "', '" . htmlspecialchars(addslashes($row['description'])) . "')\" class='text-blue-600 hover:underline mr-2'>Edit</button>";
+                                    echo "<button onclick=\"confirmDelete('" . htmlspecialchars($row['id']) . "')\" class='text-red-600 hover:underline'>Delete</button>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -112,14 +148,16 @@ if ($conn->connect_error) {
             <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
                 <div class="bg-white rounded-lg p-8 w-full max-w-md relative">
                     <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Module</h2>
-                    <form id="moduleForm">
+                    <form id="moduleForm" method="post" action="">
+                        <input type="hidden" name="action" id="form-action" value="add">
+                        <input type="hidden" name="id" id="module-id" value="">
                         <div class="mb-4">
                             <label class="block mb-1 font-semibold">Name</label>
-                            <input type="text" name="name" class="w-full border px-3 py-2 rounded" required />
+                            <input type="text" name="name" id="module-name" class="w-full border px-3 py-2 rounded" required />
                         </div>
                         <div class="mb-4">
                             <label class="block mb-1 font-semibold">Description</label>
-                            <textarea name="description" class="w-full border px-3 py-2 rounded" required></textarea>
+                            <textarea name="description" id="module-description" class="w-full border px-3 py-2 rounded" required></textarea>
                         </div>
                         <div class="flex justify-end">
                             <button type="button" onclick="closeModal()" class="mr-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
